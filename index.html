@@ -1,6 +1,8 @@
 <html>
 <head>
+</head>
 
+<body>
 <script>
 function loadJSON(path, success, error)
 {
@@ -20,12 +22,7 @@ function loadJSON(path, success, error)
     xhr.open("GET", path, true);
     xhr.send();
 }
-</script>
 
-</head>
-
-<body>
-<script>
 var titles;
 var titlesLength;
 loadJSON('markov.json',
