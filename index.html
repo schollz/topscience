@@ -27,7 +27,7 @@ var titles;
 var titlesLength;
 loadJSON('markov.json',
          function(data) { 
-         	document.getElementById("loading").innerHTML='<div id="title"></div><br\><input id="clickMe" type="button" value="Generate science paper title" onclick="showRandomTitle();" />';
+         	document.getElementById("loading").innerHTML='<div style="font-size:22pt;height:40px;width:100%;" id="title"></div><br\><br\><input style="font-size:18pt;height:40px;width:100%;" id="clickMe" type="button" value="Generate science paper title" onclick="showRandomTitle();" /><br\>';
          	titles = data; 
          	titlesLength = titles.length; 
          	showRandomTitle();
@@ -50,12 +50,30 @@ function showRandomTitle(){
 </center>
 
 
+
+<!-- My favorites:
+The Entropic Cost Of Swimming, Flying, And Running
+ -->
+
+ <p>What's in a title? I extracted 12,000 articles with the most citations in the journals Science and Nature (using expression <code>SO=(SCIENCE OR NATURE)</code> in Web of Science, and exported into the Bibtex file <code>top12000.bib</code>).</p>
+
+<p>From these I created a word cloud of the top words and generated a little website to view some Markov-chain related article names. </p>
+
+<p>Look no further for a name for your next Science/Nature paper. </p>
+
+<p>If you'd like to run the code yourself:</p>
+
+<p><pre>
+git clone https://github.com/schollz/topscience.git
+python3 -m pip install bibtexparser markovify Pillow numpy
+python3 run.py
+</pre></p>
+
 <center>
 <br>
 <img src="/flask_words.png"></img>
 </center>
 </body>
-<!-- My favorites:
-The Entropic Cost Of Swimming, Flying, And Running
- -->
+
+
  </html>

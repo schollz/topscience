@@ -9,6 +9,8 @@ Look no further for a name for your next Science/Nature paper.
 If you'd like to run the code yourself:
 
 ```
+git clone https://github.com/schollz/topscience.git
+cd topscience
 python3 -m pip install bibtexparser markovify Pillow numpy
 python3 run.py
 ```
