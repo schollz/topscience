@@ -1,0 +1,64 @@
+<html>
+<head>
+
+<script>
+function loadJSON(path, success, error)
+{
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                if (success)
+                    success(JSON.parse(xhr.responseText));
+            } else {
+                if (error)
+                    error(xhr);
+            }
+        }
+    };
+    xhr.open("GET", path, true);
+    xhr.send();
+}
+</script>
+
+</head>
+
+<body>
+<script>
+var titles;
+var titlesLength;
+loadJSON('markov.json',
+         function(data) { 
+         	document.getElementById("loading").innerHTML='<div id="title"></div><br\><input id="clickMe" type="button" value="Generate science paper title" onclick="showRandomTitle();" />';
+         	titles = data; 
+         	titlesLength = titles.length; 
+         	showRandomTitle();
+   
+
+         },
+         function(xhr) { console.error(xhr); }
+);
+function showRandomTitle(){
+  whichTitle=Math.round(Math.random()*(titlesLength-1));
+  var theDiv = document.getElementById("title");
+  theDiv.innerHTML = "<q>" + titles[whichTitle] + "</q>";
+}
+</script>
+
+<center>
+<div id='loading'>
+<p>Loading...</p>
+</div>
+</center>
+
+
+<center>
+<br>
+<img src="/flask_words.png"></img>
+</center>
+</body>
+<!-- My favorites:
+The Entropic Cost Of Swimming, Flying, And Running
+ -->
+ </html>
