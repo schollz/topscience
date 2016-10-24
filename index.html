@@ -3,6 +3,11 @@
 </head>
 
 <body>
+
+
+
+
+
 <script>
 function loadJSON(path, success, error)
 {
@@ -52,34 +57,35 @@ function showRandomTitle(subject,color){
 function showRandom(subject,color) {
     whichTitle=Math.round(Math.random()*(subjectData[subject].length-1));
     whichAbstract=Math.round(Math.random()*(subjectAbstract[subject].length-1));
-    document.getElementById("loading").innerHTML='<div style="word-wrap: break-word;background: #'+color+';font-size:22pt;min-height:40px;width:100%;" id="title"></div><br\><br\>';
+    document.getElementById("loading").innerHTML='<div style="word-wrap: break-word;background: #'+color+';font-size:22pt;line-height:22pt;min-height:40px;width:100%;" id="title"></div><br\><br\>';
     var theDiv = document.getElementById("title");
-    theDiv.innerHTML = '<q style="word-wrap: break-word;background: #'+color+';">' + subjectData[subject][whichTitle] + "</q>" + '<p style="text-align:left;word-wrap:break-word;font-size:12pt;"><b>Abstract:</b><br>'+subjectAbstract[subject][whichAbstract]+"</p>";    
+    theDiv.innerHTML = '<br><span>' + subjectData[subject][whichTitle] + "</span>" + '<p style="text-align:left;word-wrap:break-word;font-size:12pt;line-height:12pt;"><b>Abstract:</b><br>'+subjectAbstract[subject][whichAbstract]+"</p><br>";    
 }
 </script>
 
 <center>
 <p>
-<input style="background: #EF9FAF;font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Chemistry" onclick="showRandomTitle('chemistry','EF9FAF');" /><input style="background: #FFCAAA;font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Biology" onclick="showRandomTitle('biology','FFCAAA');" /><input style="background: #6FA698;font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Medicine" onclick="showRandomTitle('medicine','6FA698');" /><input style="background: #A8DB92;font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Pyschology" onclick="showRandomTitle('psychology','A8DB92');" />
+<input style="background: #EF9FAF;font-size:18pt;height:40px;width:20%;" id="clickMe" type="button" value="Chemistry" onclick="showRandomTitle('chemistry','EF9FAF');" /><input style="background: #FFCAAA;font-size:18pt;height:40px;width:20%;" id="clickMe" type="button" value="Biology" onclick="showRandomTitle('biology','FFCAAA');" /><input style="background: #6FA698;font-size:18pt;height:40px;width:20%;" id="clickMe" type="button" value="Medicine" onclick="showRandomTitle('medicine','6FA698');" /><input style="background: #A8DB92;font-size:18pt;height:40px;width:20%;" id="clickMe" type="button" value="Pyschology" onclick="showRandomTitle('psychology','A8DB92');" />
 </p>
 <p>
-<input style="background: #7887AB;font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Economics" onclick="showRandomTitle('economics','7887AB');" /><input style="background: #9576AB;font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="CS" onclick="showRandomTitle('computerscience','9576AB');" /><input style="background: #FFF0AA;font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Math" onclick="showRandomTitle('math','FFF0AA');" /><input style="background: #FFE3AA;font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Physics" onclick="showRandomTitle('physics','FFE3AA');" />
+<input style="background: #7887AB;font-size:18pt;height:40px;width:20%;" id="clickMe" type="button" value="Economics" onclick="showRandomTitle('economics','7887AB');" /><input style="background: #9576AB;font-size:18pt;height:40px;width:20%;" id="clickMe" type="button" value="CS" onclick="showRandomTitle('computerscience','9576AB');" /><input style="background: #FFF0AA;font-size:18pt;height:40px;width:20%;" id="clickMe" type="button" value="Math" onclick="showRandomTitle('math','FFF0AA');" /><input style="background: #FFE3AA;font-size:18pt;height:40px;width:20%;" id="clickMe" type="button" value="Physics" onclick="showRandomTitle('physics','FFE3AA');" />
 </p>
 <div id='loading'>
 </div>
 </center>
 
 
+<p>Look no further for a name for your next Science/Nature paper. These science paper titles are randomly generated from a Markov chain from some of the most-cited science papers.
+</p>
 
-<!-- My favorites:
-The Entropic Cost Of Swimming, Flying, And Running
- -->
+<p>
+To do this, I extracted the 12,000 articles most-cited articles from the journals Science and Nature (using expression <code>SO=(SCIENCE OR NATURE)</code> in Web of Science). I also created a word cloud from these titles (which shows it pays to be a cell biologist who studies expression of human protein receptors).
+</p>
 
- <p>What's in a title? I extracted 12,000 articles with the most citations in the journals Science and Nature (using expression <code>SO=(SCIENCE OR NATURE)</code> in Web of Science, and exported into the Bibtex file <code>top12000.bib</code>).</p>
-
-<p>From these I created a word cloud of the top words and generated a little website to view some Markov-chain related article names. </p>
-
-<p>Look no further for a name for your next Science/Nature paper. </p>
+<center>
+<br>
+<img src="/img/flask_words.png" width=300px></img>
+</center> 
 
 <p>If you'd like to run the code yourself:</p>
 
@@ -89,10 +95,7 @@ python3 -m pip install bibtexparser markovify Pillow numpy
 python3 run.py
 </pre></p>
 
-<center>
-<br>
-<img src="/flask_words.png"></img>
-</center>
+
 </body>
 
 

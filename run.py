@@ -35,7 +35,7 @@ def getArea(area):
 
 def loadBibtexAndWriteTitles():
     print("Loading bibtex...")
-    with open('top12000.bib') as f:
+    with open('top.bib') as f:
         b = bibtexparser.load(f)
 
     print("Writing files...")
@@ -109,10 +109,11 @@ def makeWordCloud():
     wc.generate(text)
 
     # store to file
-    wc.to_file(path.join(d, "flask_words.png"))
+    os.mkdir('img')
+    wc.to_file(path.join(d, 'img',"flask_words.png"))
 
 if __name__ == "__main__":
-    # loadBibtexAndWriteTitles()
+    loadBibtexAndWriteTitles()
     generateMarkovSentences()
     # makeWordCloud()
     # print("Now run \n\npython3 -m http.server \n\nand open your browser to http://127.0.0.1:8000")
