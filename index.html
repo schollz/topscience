@@ -25,27 +25,39 @@ function loadJSON(path, success, error)
 
 var titles;
 var titlesLength;
-loadJSON('markov.json',
-         function(data) { 
-         	document.getElementById("loading").innerHTML='<div style="font-size:22pt;height:40px;width:100%;" id="title"></div><br\><br\><input style="font-size:18pt;height:40px;width:100%;" id="clickMe" type="button" value="Generate science paper title" onclick="showRandomTitle();" /><br\>';
-         	titles = data; 
-         	titlesLength = titles.length; 
-         	showRandomTitle();
-   
+var subjectData = []; // create an empty array
+function showRandomTitle(subject,color){
+  if ((subject in subjectData)==false) {
+    document.getElementById("loading").innerHTML = 'Loading...'
+    loadJSON(subject+'_title_markov.json',
+             function(data) { 
+                document.getElementById("loading").innerHTML='<div style="font-size:22pt;min-height:40px;width:100%;" id="title"></div><br\><br\>';
+                subjectData[subject]=data;
+                showRandom(subject,color);
+             },
+             function(xhr) { console.error(xhr); }
+    );
+  } else {
+    showRandom(subject,color);
+  }
+}
 
-         },
-         function(xhr) { console.error(xhr); }
-);
-function showRandomTitle(){
-  whichTitle=Math.round(Math.random()*(titlesLength-1));
-  var theDiv = document.getElementById("title");
-  theDiv.innerHTML = "<q>" + titles[whichTitle] + "</q>";
+function showRandom(subject,color) {
+    whichTitle=Math.round(Math.random()*(subjectData[subject].length-1));
+    document.getElementById("loading").innerHTML='<div style="word-wrap: break-word;background: #'+color+';font-size:22pt;min-height:40px;width:100%;" id="title"></div><br\><br\>';
+    var theDiv = document.getElementById("title");
+    theDiv.innerHTML = '<q style="word-wrap: break-word;background: #'+color+';">' + subjectData[subject][whichTitle] + "</q>";    
 }
 </script>
 
 <center>
+<p>
+<input style="background: #99dfff;font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Chemistry" onclick="showRandomTitle('chemistry','99dfff');" /><input style="font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Biology" onclick="showRandomTitle('biology');" /><input style="font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Medicine" onclick="showRandomTitle('medicine');" /><input style="font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Pyschology" onclick="showRandomTitle('psychology');" />
+</p>
+<p>
+<input style="font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Economics" onclick="showRandomTitle('economics');" /><input style="font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="CS" onclick="showRandomTitle('computerscience');" /><input style="font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Math" onclick="showRandomTitle('math');" /><input style="font-size:18pt;height:40px;width:25%;" id="clickMe" type="button" value="Physics" onclick="showRandomTitle('physics');" />
+</p>
 <div id='loading'>
-<p>Loading...</p>
 </div>
 </center>
 

@@ -10,7 +10,7 @@ from PIL import Image
 import numpy as np
 from wordcloud import WordCloud, STOPWORDS
 
-researchAreas = ['biology','computerscience','math','astronomy','chemistry','ecnonomics','psychology','medicine']
+researchAreas = ['economics','biology','computerscience','math','astronomy','chemistry','psychology','medicine','physics']
 
 def getArea(area):
     area = area.lower()
@@ -18,12 +18,10 @@ def getArea(area):
         return 'biology'
     if 'computer' in area:
         return 'computerscience'
-    if 'physics' in area:
+    if 'astronomy' in area or 'physics' in area:
         return 'physics'
     if 'math' in area or 'probability' in area:
         return 'math'
-    if 'astronomy' in area:
-        return 'astronomy'
     if 'chemistry' in area:
         return 'chemistry'
     if 'economics' in area or 'business' in area:
