@@ -30,7 +30,7 @@ def generateMarkovSentences():
 	text_model = markovify.Text(text)
 	print("Generating Markov sentences...")
 	markov = []	
-	for i in range(20000):
+	for i in range(7141):  # want to ensure 50% probability of seeing two names randomly after 100 attempts, so X = ((1/2 - 100)^2 - 1/4)/(2*ln(2)). See Birthday Paradox
 		try:
 			markov.append(text_model.make_sentence()[:-1])
 		except:
