@@ -4,8 +4,7 @@
 
 I also created a word cloud from these titles (which shows it pays to be a cell biologist who studies expression of human protein receptors).
 
-
-![](https://blog.zackaryscholl.com/img/flask_words.png)
+<center><img src="/flask_words.png" width=400px></img></center>
 
 Look no further for a name for your next Science/Nature paper. 
 
